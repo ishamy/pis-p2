@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import view.MainView;
+
 public class HouseGestion {
 
 	 int curr_pos;
@@ -64,21 +66,18 @@ public class HouseGestion {
 			else houseList[19] = houseList[18];
 		}
 		
-		//HouseModel mCopy = new HouseModel();
-		//ArrayList<RoomModel> o= HouseModel.getPieceList();
-		//mCopy.setPieceList(o);
 		houseList[0] =m.clone();
 	
 		System.out.println("**************");
-		/*for(int a = 0; a <20 ;a++ ){
+		for(int a = 0; a <20 ;a++ ){
 			if (houseList[a] != null )
 			{
 				System.out.println("------------------");
 				if (houseList[a].getFirstPiece() != null )
-					//System.out.println(houseList[a].getPieceWhereNom("a").getTemperature());
+					System.out.println(houseList[a].getPieceWhereNom("a").getTemperature());
 			}
 		}
-*/
+
 		curr_pos =0;
 
 	}

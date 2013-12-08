@@ -72,6 +72,7 @@ public class CaracteristicViewController implements ActionListener,MouseListener
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
+		RepresentationView r = (RepresentationView) MainView.getRep();
 		// TODO Auto-generated method stub
 		if (arg0.getComponent().getName().equals("Change Background")){
 			RoomModel p = HouseModel.

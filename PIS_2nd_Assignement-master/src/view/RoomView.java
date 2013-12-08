@@ -53,7 +53,7 @@ public class RoomView extends Canvas implements View {
 		musicController = mc;
 		if (type.equals("Rectangle")) currentShape= RECTANGLE;
 		else if (type.equals("Triangle")) currentShape= TRIANGLE;
-		if (type.equals("Ellipse")) currentShape= ELLIPSE;
+		else if (type.equals("Ellipse")) currentShape= ELLIPSE;
 
 		
 		light = newImage(5, 5, ICONS_DIR+"light_off.png");
