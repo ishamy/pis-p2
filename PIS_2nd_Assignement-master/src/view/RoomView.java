@@ -169,6 +169,7 @@ public class RoomView extends Canvas implements View {
 		addShape(sound);
 		
 		changeShape(currentShape);						// resize the shape
+		setColors(model.getCouleurFond(),model.getCouleurContour());
 	}
 
 }

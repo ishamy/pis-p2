@@ -6,10 +6,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.ButtonModel;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
-import javax.swing.text.html.FormView;
 
 import view.*;
 
@@ -44,7 +42,7 @@ public class CaracteristicViewController implements ActionListener,MouseListener
 					p.setNom(CaracteristicView.lblNom.getText() );
 					musicController.changeRoomName(CaracteristicView.nomPiece,
 							CaracteristicView.lblNom.getText() );
-
+					CaracteristicView.lblNom.setText("-"); 
 				}
 
 				p.setTemperature((Integer)CaracteristicView.s.getValue());
@@ -85,7 +83,6 @@ public class CaracteristicViewController implements ActionListener,MouseListener
 				if (p != null) 
 				{
 					p.setCouleurFond(color);
-					RoomView.setColors(color,null);
 				}	
 			}
 		}
@@ -101,11 +98,11 @@ public class CaracteristicViewController implements ActionListener,MouseListener
 				if (p != null) 
 				{
 					p.setCouleurContour(color);
-					RoomView.setColors(null,color);
 
 				}
 			}
 		}
+		ModificationView.getRoomView().update();
 	}
 
 	@Override

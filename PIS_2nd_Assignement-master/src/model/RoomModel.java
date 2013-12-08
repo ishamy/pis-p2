@@ -16,8 +16,8 @@ public class RoomModel {
 		this.nom = nom;
 		lumiere = false;
 		temperature = 20;
-		couleurFond = Color.WHITE;
-		couleurContour = Color.WHITE;
+		couleurFond = Color.BLACK;
+		couleurContour = Color.BLACK;
 		forme = "Triangle";
 	}
 
