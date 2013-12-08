@@ -69,14 +69,14 @@ public class HouseGestion {
 		houseList[0] =m.clone();
 	
 		System.out.println("**************");
-		for(int a = 0; a <20 ;a++ ){
+		/*for(int a = 0; a <20 ;a++ ){
 			if (houseList[a] != null )
 			{
 				System.out.println("------------------");
 				if (houseList[a].getFirstPiece() != null )
 					System.out.println(houseList[a].getPieceWhereNom("a").getTemperature());
 			}
-		}
+		}*/
 
 		curr_pos =0;
 
