@@ -69,26 +69,29 @@ public class HouseModel implements Cloneable{
 	}
 
 
-	public void newChambre(String s){
-		RoomsView r =(RoomsView)
-		ModificationView.getRoomView();
-		boolean present= false;
+
+	public boolean newChambre(String s){
+		RoomsView r = (RoomsView)
+					ModificationView.getRoomView();
+		boolean present = false;
 		for(RoomModel p : pieceList)
 		{
 			if (p.nom.equals(s) ){
 				present = true;
 				JOptionPane.showMessageDialog(null,
-				"Erreur, nom deja existant");
+						"Erreur, nom deja existant");
 			}
 		}
-		if (present == false && !s.equals(""))
+		if (!present && s.length() > 0)
 		{
-			RoomModel p = new RoomModel(s,cpt);
-			cpt++;
+			RoomModel p = new RoomModel(s); 
 			pieceList.add(p);
 			r.update();
+			return true;
 		}
+		return false;
 	}
+	
 
 	public static ArrayList<RoomModel> getPieceList() {
 		return pieceList;
@@ -107,11 +110,11 @@ public class HouseModel implements Cloneable{
 	public HouseModel clone() {
 		Object o = null;
 		try {
-			// On récupère l'instance à renvoyer par l'appel de la 
-			// méthode super.clone()
+			// On rï¿½cupï¿½re l'instance ï¿½ renvoyer par l'appel de la 
+			// mï¿½thode super.clone()
 			o = super.clone();
 		} catch(CloneNotSupportedException cnse) {
-			// Ne devrait jamais arriver car nous implémentons 
+			// Ne devrait jamais arriver car nous implï¿½mentons 
 			// l'interface Cloneable
 			cnse.printStackTrace(System.err);
 		}

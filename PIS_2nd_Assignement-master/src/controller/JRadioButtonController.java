@@ -38,6 +38,8 @@ public class JRadioButtonController implements ActionListener
 				rm.update();
 			}
 		RepresentationView r = (RepresentationView) MainView.getRep();
+		r.addRoom(p.getNom());
+
 		r.update();
 	}
 

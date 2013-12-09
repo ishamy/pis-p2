@@ -18,8 +18,11 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import sun.applet.Main;
+import view.MainView;
 import view.ModificationView;
 import view.MusicView;
+import view.RepresentationView;
 
 import javazoom.jlgui.basicplayer.BasicController;
 import javazoom.jlgui.basicplayer.BasicPlayer;
@@ -262,5 +265,6 @@ public class MusicController {
 	public void changeRoomName(String init,String change){
 		removeRoom(init);
 		addRoom(change);
+
 	}
 }

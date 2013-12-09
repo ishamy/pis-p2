@@ -12,11 +12,11 @@ public class RoomModel {
 	Color couleurContour;
 	String forme;
 	
-	public RoomModel (String nom, int id) {
+	public RoomModel (String nom) {
 		this.nom = nom;
 		lumiere = false;
 		temperature = 20;
-		couleurFond = Color.BLACK;
+		couleurFond = Color.WHITE;
 		couleurContour = Color.BLACK;
 		forme = "Triangle";
 	}

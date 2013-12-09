@@ -79,6 +79,7 @@ public class RoomsView extends JPanel implements View {
 	
 	
 	private void initStaticPanel() {
+	
 		staticPanel = new JPanel();
 		staticPanel.setPreferredSize(new Dimension(getWidth()/4, getHeight()));
 		staticPanel.setLayout(new GridLayout(3,1));
@@ -89,9 +90,10 @@ public class RoomsView extends JPanel implements View {
 			public void actionPerformed(ActionEvent arg0) {
 				main = MainView.getMain();
 				String roomsName = new AddView(getParent()).getRoomsName();
-				if(roomsName.length() > 0 && HouseModel.getPieceWhereNom(roomsName) == null)
+				if(main.getMaison().newChambre(roomsName)) {
 					musicController.addRoom(roomsName);
-				main.getMaison().newChambre(roomsName);
+					representation.addRoom(roomsName);
+				}
 			}
 		});
 		

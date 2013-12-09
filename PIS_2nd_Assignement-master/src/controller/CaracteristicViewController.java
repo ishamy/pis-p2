@@ -31,7 +31,8 @@ public class CaracteristicViewController implements ActionListener,MouseListener
 		HouseGestion hg= MainView.getHouseGestion();
 		ModificationView.getCaracView();
 		musicController = MainView.getMusicController();
-
+		RepresentationView viewRep =(RepresentationView)MainView.getRep();
+		
 		if (arg0.getActionCommand().equals("Validate")){
 			RoomModel p = HouseModel.
 			getPieceWhereNom(CaracteristicView.nomPiece);
@@ -42,16 +43,19 @@ public class CaracteristicViewController implements ActionListener,MouseListener
 					p.setNom(CaracteristicView.lblNom.getText() );
 					musicController.changeRoomName(CaracteristicView.nomPiece,
 							CaracteristicView.lblNom.getText() );
+					viewRep.addRoom(CaracteristicView.lblNom.getText());
 					CaracteristicView.lblNom.setText("-"); 
+
 				}
 
 				p.setTemperature((Integer)CaracteristicView.s.getValue());
 				hg.enregistrerHouse(m);
-				ModificationView.getRoomView().update();
 			}
 			else 
 				JOptionPane.showMessageDialog(null,
 				"No rooms selected");
+			
+			
 			ModificationView.getRoomView().update();
 		}
 		else if(arg0.getActionCommand().equals("Previous")){
@@ -63,7 +67,9 @@ public class CaracteristicViewController implements ActionListener,MouseListener
 
 		}
 		else if (arg0.getActionCommand().equals("Validate all")){
-			m.appliquerPartout();
+			if (HouseModel.pieceList.size() == 0) JOptionPane.showMessageDialog(null,
+					"No rooms in the house");
+			else m.appliquerPartout();
 		}
 
 	}

@@ -85,6 +85,7 @@ public class DeleteRoomView extends JDialog{
 		if( HouseModel.pieceList.size() == 0){
 			CaracteristicView.lblNom.setText("-");
 		}
+		RepresentationView view = (RepresentationView) MainView.getRep();
 
 	}
 }

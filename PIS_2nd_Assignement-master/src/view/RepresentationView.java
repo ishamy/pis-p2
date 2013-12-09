@@ -58,7 +58,7 @@ public class RepresentationView extends Canvas implements View {
 	}
 	
 	
-	private void init() {
+	public void init() {
 		int roomsNumber = HouseModel.pieceList.size();
 		
 		setLayout(new GridLayout(roomsNumber, roomsNumber));
@@ -71,8 +71,7 @@ public class RepresentationView extends Canvas implements View {
 					getWidth()/roomsNumber, 
 					getHeight()/roomsNumber,
 					model.getNom(),
-					controller,
-					model.getForme()));
+					controller, model.getForme()));
 			}
 			else {
 				
@@ -92,14 +91,14 @@ public class RepresentationView extends Canvas implements View {
 						
 						findComponentNumber(selection);
 						
-						 int width = selection.getWidth()/2;
+						/* int width = selection.getWidth()/2;
 						int height = selection.getHeight()/2;
 						int dx = getMousePosition().x - width/2;
 						int dy = getMousePosition().y - height/2;
 						dragableObject = newRectangle(dx, dy, width, height);
 						dragableObject.setFillPaint(Color.BLACK);
 						above(dragableObject);
-						repaint(); 
+						repaint(); */
 					}					
 				};
 			};
@@ -128,7 +127,7 @@ public class RepresentationView extends Canvas implements View {
 		
 		return dragMachine;
 	}
-	
+
 	
 	private int findComponentNumber(Component component) {
 		int componentNumber = 0;
@@ -138,19 +137,20 @@ public class RepresentationView extends Canvas implements View {
 	
 	
 	
+	
 	public void addRoom(String roomsName) {
 		Component[] components = getComponents();				// get all old components
 		removeAll();
 		
 		int roomsNumber = HouseModel.pieceList.size();				// new size
 		setLayout(new GridLayout(roomsNumber, roomsNumber));
-		
+		System.out.println(HouseModel.getPieceWhereNom(roomsName).getNom()+" - ---------------");
 		add(new RoomView(HouseModel.getPieceWhereNom(roomsName),	// add new room  
-						 getWidth()/roomsNumber, 
-						 getHeight()/roomsNumber,
-						 roomsName,
-						 controller,
-						 HouseModel.getPieceWhereNom(roomsName).getForme()), 0);
+				 getWidth()/roomsNumber, 
+				 getHeight()/roomsNumber,
+				 roomsName,
+				 controller,
+				 HouseModel.getPieceWhereNom(roomsName).getForme()), 0);
 		
 		int oldCounter = 0;
 		
@@ -174,10 +174,15 @@ public class RepresentationView extends Canvas implements View {
 		
 		for(Component c : getComponents())
 			if(c instanceof View) {
+				if(roomsNumber != 0)
 				c.setSize(getWidth()/roomsNumber, getHeight()/roomsNumber);
+				else 
+				c.setSize(getWidth()/1, getHeight()/1);
+
 				((View) c).update();
 			}
 		repaint();
 	}
+
 
 }

@@ -70,9 +70,6 @@ public class RoomView extends Canvas implements View {
 	private void init() {
 		
 		changeShape(currentShape);
-		
-		
-		
 		setBorder(new LineBorder(Color.black, 2));
 		labelName = new JLabel();
 		add(labelName);
