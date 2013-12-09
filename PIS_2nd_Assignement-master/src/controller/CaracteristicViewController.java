@@ -32,7 +32,7 @@ public class CaracteristicViewController implements ActionListener,MouseListener
 		ModificationView.getCaracView();
 		musicController = MainView.getMusicController();
 		RepresentationView viewRep =(RepresentationView)MainView.getRep();
-		
+
 		if (arg0.getActionCommand().equals("Validate")){
 			RoomModel p = HouseModel.
 			getPieceWhereNom(CaracteristicView.nomPiece);
@@ -40,12 +40,16 @@ public class CaracteristicViewController implements ActionListener,MouseListener
 			{
 				if (!CaracteristicView.nomPiece.equals(CaracteristicView.lblNom.getText()))
 				{
-					p.setNom(CaracteristicView.lblNom.getText() );
-					musicController.changeRoomName(CaracteristicView.nomPiece,
-							CaracteristicView.lblNom.getText() );
-					viewRep.addRoom(CaracteristicView.lblNom.getText());
-					CaracteristicView.lblNom.setText("-"); 
-
+					if (HouseModel.getPieceWhereNom(CaracteristicView.lblNom.getText()) == null){
+						p.setNom(CaracteristicView.lblNom.getText() );
+						musicController.changeRoomName(CaracteristicView.nomPiece,
+								CaracteristicView.lblNom.getText() );
+						viewRep.deleteRoom(CaracteristicView.nomPiece);
+						viewRep.addRoom(CaracteristicView.lblNom.getText());
+						CaracteristicView.lblNom.setText("-"); 
+					}
+					else JOptionPane.showMessageDialog(null,
+					"This name already exists");
 				}
 
 				p.setTemperature((Integer)CaracteristicView.s.getValue());
@@ -54,8 +58,8 @@ public class CaracteristicViewController implements ActionListener,MouseListener
 			else 
 				JOptionPane.showMessageDialog(null,
 				"No rooms selected");
-			
-			
+
+
 			ModificationView.getRoomView().update();
 		}
 		else if(arg0.getActionCommand().equals("Previous")){
@@ -68,7 +72,7 @@ public class CaracteristicViewController implements ActionListener,MouseListener
 		}
 		else if (arg0.getActionCommand().equals("Validate all")){
 			if (HouseModel.pieceList.size() == 0) JOptionPane.showMessageDialog(null,
-					"No rooms in the house");
+			"No rooms in the house");
 			else m.appliquerPartout();
 		}
 

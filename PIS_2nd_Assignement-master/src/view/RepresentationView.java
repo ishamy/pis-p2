@@ -73,9 +73,7 @@ public class RepresentationView extends Canvas implements View {
 					model.getNom(),
 					controller, model.getForme()));
 			}
-			else {
-				
-			}
+			
 		}
 	}
 	
@@ -144,7 +142,7 @@ public class RepresentationView extends Canvas implements View {
 		
 		int roomsNumber = HouseModel.pieceList.size();				// new size
 		setLayout(new GridLayout(roomsNumber, roomsNumber));
-		System.out.println(HouseModel.getPieceWhereNom(roomsName).getNom()+" - ---------------");
+
 		add(new RoomView(HouseModel.getPieceWhereNom(roomsName),	// add new room  
 				 getWidth()/roomsNumber, 
 				 getHeight()/roomsNumber,
@@ -157,6 +155,26 @@ public class RepresentationView extends Canvas implements View {
 		for(int index = 1; index < (roomsNumber * roomsNumber); index++)
 			if(index > roomsNumber && index % roomsNumber != 0)
 				add(components[oldCounter++], index);
+			else {
+				Canvas blank = new Canvas();
+				blank.setBackground(Color.WHITE);
+				blank.setBorder(new LineBorder(Color.BLACK, 2));
+				add(blank, index);
+			}
+		
+		update();
+	}
+	
+	public void deleteRoom(String roomsName) {
+		Component[] components = getComponents();				// get all old components
+		removeAll();
+		
+		int roomsNumber = HouseModel.pieceList.size();				// new size
+
+		int oldCounter = 0;
+		for(int index = 1; index < (roomsNumber * roomsNumber); index++)
+			if(index > roomsNumber && index % roomsNumber != 0)
+				remove(components[oldCounter++]);
 			else {
 				Canvas blank = new Canvas();
 				blank.setBackground(Color.WHITE);

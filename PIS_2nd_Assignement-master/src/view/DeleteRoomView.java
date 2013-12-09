@@ -75,17 +75,19 @@ public class DeleteRoomView extends JDialog{
 
 	public void deleteSelection(){
 		MusicController mc = MainView.getMusicController();
+		RepresentationView view = (RepresentationView) MainView.getRep();
+
 		for(JCheckBox p : listCheck){
 			if(p.isSelected())
 			{
 				HouseModel.supprimerPiece(p.getName());
 				mc.removeRoom(p.getName());
+				view.deleteRoom(p.getName());
+
 			}
 		}
 		if( HouseModel.pieceList.size() == 0){
 			CaracteristicView.lblNom.setText("-");
 		}
-		RepresentationView view = (RepresentationView) MainView.getRep();
-
 	}
 }
