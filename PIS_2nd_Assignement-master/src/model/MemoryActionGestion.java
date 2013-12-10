@@ -72,9 +72,11 @@ public class MemoryActionGestion {
 		RepresentationView viewRep =(RepresentationView)MainView.getRep();
 		musicController = MainView.getMusicController();
 
-		System.out.println(m.r.getNom());
-		RoomModel rm = m.r;
-		if (rm != null){
+
+		
+		if (m != null){
+			RoomModel rm = m.r;
+			System.out.println(m.r.getNom());
 			if (m.element == "Temperature")
 			{
 				rm.setTemperature(Integer.parseInt(m.lastValue));
