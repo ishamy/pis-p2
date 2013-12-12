@@ -2,30 +2,39 @@ package model;
 
 import java.awt.Color;
 
+import javax.swing.JColorChooser;
+
 public class RoomModel {
 	
-
+	public static final int RECTANGLE = 0;
+	public static final int ELLIPSE = 1;
+	public static final int TRIANGLE = 2;
+	
 	String nom;
 	boolean lumiere;
 	int temperature;
 	Color couleurFond;
 	Color couleurContour;
-	String forme;
+	int forme;
+	JColorChooser colorChooser;
 	
+	
+
 	public RoomModel (String nom) {
 		this.nom = nom;
 		lumiere = false;
 		temperature = 20;
 		couleurFond = Color.WHITE;
 		couleurContour = Color.BLACK;
-		forme = "Triangle";
+		forme = RECTANGLE;
+		colorChooser = new JColorChooser();
 	}
 
-	public String getForme() {
+	public int getForme() {
 		return forme;
 	}
 
-	public void setForme(String forme) {
+	public void setForme(int forme) {
 		this.forme = forme;
 	}
 
@@ -68,6 +77,12 @@ public class RoomModel {
 		couleurContour= color;
 	}
 	
-	
+	public JColorChooser getColorChooser() {
+		return colorChooser;
+	}
+
+	public void setColorChooser(JColorChooser colorChooser) {
+		this.colorChooser = colorChooser;
+	}
 	
 }

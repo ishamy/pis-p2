@@ -28,9 +28,6 @@ public class RoomView extends Canvas implements View {
 
 	private static final String ICONS_DIR = "icons/"; 
 	
-	public static final int RECTANGLE = 0;
-	public static final int ELLIPSE = 1;
-	public static final int TRIANGLE = 2;
 	
 	RoomModel model;
 	int currentShape;
@@ -38,11 +35,11 @@ public class RoomView extends Canvas implements View {
 	JLabel labelName;
 	MusicController musicController;
 	
-	static CShape room;
+	CShape room;
 	CImage light;
 	CImage sound;
 	
-	public RoomView(RoomModel m, int width, int height, String name, MusicController mc,String type) {
+	public RoomView(RoomModel m, int width, int height, String name, MusicController mc, int type) {
 		super(width, height);
 		setSize(width, height);
 		setFocusable(true);
@@ -51,11 +48,8 @@ public class RoomView extends Canvas implements View {
 		
 		model = m;
 		musicController = mc;
-		if (type.equals("Rectangle")) currentShape= RECTANGLE;
-		else if (type.equals("Triangle")) currentShape= TRIANGLE;
-		else if (type.equals("Ellipse")) currentShape= ELLIPSE;
 
-		
+		currentShape = type ;
 		light = newImage(5, 5, ICONS_DIR+"light_off.png");
 		
 		light.setOutlined(false);
@@ -116,7 +110,7 @@ public class RoomView extends Canvas implements View {
 		update();
 	}
 	
-	public static void setColors( Color f,Color ol) { // change canvas colors
+	public void setColors( Color f,Color ol) { // change canvas colors
 		if(f != null) room.setFillPaint(f);
 		if(ol != null) room.setOutlinePaint(ol);
 	}
@@ -130,10 +124,10 @@ public class RoomView extends Canvas implements View {
 		currentShape = kind;
 		
 		switch(currentShape) {
-		case RECTANGLE:
+		case RoomModel.RECTANGLE:
 			room = newRectangle(getWidth()/2 - width/2, getHeight()/2 - height/2, width, height);
 			break;
-		case ELLIPSE:
+		case RoomModel.ELLIPSE:
 			room = newEllipse(getWidth()/2 - width/2, getHeight()/2 - height/2, width, height);
 			break;
 		default:  // TRIANGLE
@@ -165,7 +159,7 @@ public class RoomView extends Canvas implements View {
 		sound.setOutlined(false);
 		addShape(sound);
 		
-		changeShape(currentShape);						// resize the shape
+		changeShape(model.getForme());						// resize the shape
 		setColors(model.getCouleurFond(),model.getCouleurContour());
 	}
 

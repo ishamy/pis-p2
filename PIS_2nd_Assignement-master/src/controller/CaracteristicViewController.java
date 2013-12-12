@@ -29,18 +29,18 @@ public class CaracteristicViewController implements ActionListener,MouseListener
 		MainView main = MainView.getMain();
 		HouseModel m =  main.getMaison();
 		MemoryAction hg= new MemoryAction();
-		
+
 		ModificationView.getCaracView();
 		musicController = MainView.getMusicController();
 		RepresentationView viewRep =(RepresentationView)MainView.getRep();
 		RoomModel p = HouseModel.
 		getPieceWhereNom(CaracteristicView.nomPiece);
-		
+
 		if (arg0.getActionCommand().equals("Validate")){
-			
+
 			if (p != null) 
 			{
-				
+
 				if (!CaracteristicView.nomPiece.equals(CaracteristicView.lblNom.getText()))
 				{
 					if (HouseModel.getPieceWhereNom(CaracteristicView.lblNom.getText()) == null){
@@ -56,7 +56,7 @@ public class CaracteristicViewController implements ActionListener,MouseListener
 					else JOptionPane.showMessageDialog(null,
 					"This name already exists");
 				}
-				
+
 				int lastTemp = p.getTemperature();
 				p.setTemperature((Integer)CaracteristicView.s.getValue());
 				if (lastTemp != (Integer)CaracteristicView.s.getValue())
@@ -89,35 +89,37 @@ public class CaracteristicViewController implements ActionListener,MouseListener
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
+		MemoryAction hg= new MemoryAction();
+
 		RepresentationView r = (RepresentationView) MainView.getRep();
 		// TODO Auto-generated method stub
 		if (arg0.getComponent().getName().equals("Change Background")){
 			RoomModel p = HouseModel.
 			getPieceWhereNom(CaracteristicView.nomPiece);
-			Color color = JColorChooser.showDialog
-			(null, "Choisir une couleur",Color.white); 
-			if (color != null){
-				ColorView.pnlFondApercu.setBackground
-				(color);
-				if (p != null) 
-				{
+			if (p != null ){
+				Color color = p.getColorChooser().showDialog
+				(null, "Choisir une couleur",Color.white);  
+				if (color != null){
+					ColorView.pnlFondApercu.setBackground
+					(color);
+					hg.enregistrerHouse(p,"BackColor",p.getCouleurFond(), color  );
 					p.setCouleurFond(color);
-				}	
+				}
 			}
 		}
 
 		else if (arg0.getComponent().getName().equals("Change Outline")){
 			RoomModel p = HouseModel.
 			getPieceWhereNom(CaracteristicView.nomPiece);
-			Color color = JColorChooser.showDialog
-			(null, "Choisir une couleur",Color.white); 
-			if (color != null){
-				ColorView.pnlContourApercu.setBackground
-				(color);
-				if (p != null) 
-				{
+			if (p != null) 
+			{
+				Color color = p.getColorChooser().showDialog
+				(null, "Choisir une couleur",Color.white); 
+				if (color != null){
+					ColorView.pnlContourApercu.setBackground
+					(color);
+					hg.enregistrerHouse(p,"OutlineColor",p.getCouleurContour(), color  );
 					p.setCouleurContour(color);
-
 				}
 			}
 		}

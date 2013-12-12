@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.Color;
+
 import controller.MusicController;
 import view.CaracteristicView;
 import view.ColorView;
@@ -69,12 +71,11 @@ public class MemoryActionGestion {
 	}
 
 	public void execute(MemoryAction m ){
-		RepresentationView viewRep =(RepresentationView)MainView.getRep();
-		musicController = MainView.getMusicController();
 
-
-		
 		if (m != null){
+			RepresentationView viewRep =(RepresentationView)MainView.getRep();
+			musicController = MainView.getMusicController();
+
 			RoomModel rm = m.r;
 			System.out.println(m.r.getNom());
 			if (m.element == "Temperature")
@@ -84,8 +85,8 @@ public class MemoryActionGestion {
 			}
 			else if (m.element == "Form")
 			{
-				rm.setForme(m.lastValue);
-				FormsView.miseAJourJRadio(m.lastValue);
+				rm.setForme(Integer.parseInt(m.lastValue));
+				FormsView.miseAJourJRadio(Integer.parseInt(m.lastValue));
 				RoomsView rv = (RoomsView)ModificationView.getRoomView();
 				rv.update();
 			}
@@ -99,7 +100,22 @@ public class MemoryActionGestion {
 				viewRep.deleteRoom(m.newValue);
 				viewRep.addRoom(m.lastValue);
 				ModificationView.getRoomView().update();
+			}
+			else if (m.element == "Light")
+			{
+				System.out.println(m.lastValue);
+				rm.setLumiere(Boolean.valueOf(m.lastValue));
+				CaracteristicView.swt.setSelected(rm.isLumiere());
+			}
+			else if (m.element == "OutlineColor"){
 
+				rm.setCouleurContour(m.lastColor);
+				ModificationView.getRoomView().update();
+			}
+			else if (m.element == "BackColor"){
+
+				rm.setCouleurFond(m.lastColor);
+				ModificationView.getRoomView().update();
 			}
 		}
 		/*CaracteristicView.nomPiece = p.getNom();

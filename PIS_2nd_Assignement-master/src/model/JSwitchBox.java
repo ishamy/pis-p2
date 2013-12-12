@@ -16,6 +16,8 @@ import javax.swing.AbstractButton;
 import javax.swing.DefaultButtonModel;
 import javax.swing.JLabel;
 
+import view.CaracteristicView;
+
 
 
 public class JSwitchBox extends AbstractButton{
@@ -37,6 +39,7 @@ public class JSwitchBox extends AbstractButton{
 
 
 	public JSwitchBox(String trueLabel, String falseLabel) {
+
 		this.trueLabel = trueLabel;
 		this.falseLabel = falseLabel;
 		double trueLenth = getFontMetrics( getFont() ).getStringBounds( trueLabel, getGraphics() ).getWidth();
@@ -56,11 +59,19 @@ public class JSwitchBox extends AbstractButton{
 					;
 					
 					RoomModel p = HouseModel.getPieceWhereNom(e.getComponent().getName());
-					if (p != null) p.setLumiere(isSelected());
+					if (p != null) 
+						{
+							MemoryAction hg= new MemoryAction();
+
+							p.setLumiere(isSelected());
+							hg.enregistrerHouse(p,"Light", !p.isLumiere(),p.isLumiere());
+
+						}
 					
 				}
 			}
 		});
+
 	}
 
 	@Override
